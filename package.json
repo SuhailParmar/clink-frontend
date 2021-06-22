@@ -2,38 +2,31 @@
   "name": "clinky-frontend",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.5.0",
-    "@testing-library/user-event": "^7.2.1",
-    "axios": "^0.21.1",
-    "node-sass": "^4.14.1",
-    "react": "^17.0.1",
-    "react-bootstrap": "^1.2.2",
-    "react-dom": "^16.13.1",
-    "react-google-login": "^5.2.1",
-    "react-router-dom": "^5.2.0",
-    "react-scripts": "4.0.1"
-  },
+  "main": "node_modules/expo/AppEntry.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web",
+    "eject": "expo eject"
   },
-  "eslintConfig": {
-    "extends": "react-app"
+  "dependencies": {
+    "@react-native-community/masked-view": "0.1.10",
+    "@react-navigation/native": "^5.9.4",
+    "@react-navigation/stack": "^5.14.5",
+    "axios": "^0.21.1",
+    "expo": "~41.0.1",
+    "expo-status-bar": "~1.0.4",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-41.0.0.tar.gz",
+    "react-native-gesture-handler": "~1.10.2",
+    "react-native-reanimated": "~2.1.0",
+    "react-native-safe-area-context": "3.2.0",
+    "react-native-screens": "~3.0.0",
+    "react-native-web": "~0.13.12"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "devDependencies": {
+    "@babel/core": "^7.9.0"
   }
 }
