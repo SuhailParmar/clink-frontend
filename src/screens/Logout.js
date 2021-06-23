@@ -1,6 +1,6 @@
 import React from 'react';
 // import GoogleLogout from 'react-google-login';
-import Screen from '../../components/Screen.js';
+import Screen from '../components/Screen.js';
 
 const LogoutScreen = props => {
 

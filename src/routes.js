@@ -1,12 +1,12 @@
-import DeckScreen from './screens/Deck/Deck';
-import DecksScreen from './screens/Decks/Decks';
-import FriendsScreen from './screens/Friends/Friends';
-import HomeScreen from './screens/Home/Home';
-import LobbyScreen from './screens/Lobby/Lobby';
-import LoginScreen from './screens/Login/Login';
-import LogoutScreen from './screens/Logout/Logout';
-import OwnProfileScreen from './screens/OwnProfile/OwnProfile';
-import SignUpScreen from './screens/SignUp/SignUp';
+import DeckScreen from './screens/Deck';
+import DecksScreen from './screens/Decks';
+import FriendsScreen from './screens/Friends';
+import HomeScreen from './screens/Home';
+import LobbyScreen from './screens/Lobby';
+import LoginScreen from './screens/Login';
+import LogoutScreen from './screens/Logout';
+import OwnProfileScreen from './screens/OwnProfile';
+import SignUpScreen from './screens/SignUp';
 
 const mainRoutes = [
   {

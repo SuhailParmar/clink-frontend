@@ -1,5 +1,3 @@
-import colours from '../../theming/colours';
-
 export default {
   deck: {
     display: 'flex',

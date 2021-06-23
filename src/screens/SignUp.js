@@ -1,5 +1,5 @@
 import React from 'react';
-import Screen from '../../components/Screen.js';
+import Screen from '../components/Screen.js';
 
 const SignUpScreen = props => (
   <Screen>

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Text } from 'react-native';
 import PropTypes from 'prop-types';
-import Screen from '../../components/Screen.js';
-import DeckSummary from '../../components/DeckSummary/DeckSummary.js';
-import { getUser } from '../../utils/http';
+import Screen from '../components/Screen.js';
+import DeckSummary from '../components/DeckSummary/DeckSummary.js';
+import { getUser } from '../utils/http';
 
 const ProfileScreen = ({ isOwnProfile }) => {
   const [user, setUser] = useState(null);

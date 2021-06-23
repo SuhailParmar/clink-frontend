@@ -1,5 +1,5 @@
 import React from 'react';
-import ProfileScreen from '../Profile/Profile';
+import ProfileScreen from './Profile';
 
 const OwnProfileScreen = () => (
   <ProfileScreen isOwnProfile />
