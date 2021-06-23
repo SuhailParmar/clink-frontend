@@ -1,33 +1,44 @@
-import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, Image, Pressable, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 import Button from '../Button.js';
 import DeckStyles from './DeckSummary.styles.js';
 
 const styles = StyleSheet.create(DeckStyles);
 
-const DeckSummary = ({ onPress, name, logo, shortDesc }) => {
+const DeckSummary = ({ onPress, name, logo, shortDesc, author }) => {
+  const [open, isOpen] = useState(false);
+
+  const deckOnPress = () => {
+    isOpen(!open);
+  }
+
   return (
-    <View className="card" style={styles.deck}>
-      <img src={logo} className="card-img-top" alt=""></img>
-      <div className="card-body">
-        <h5 className="card-title">{name}</h5>
-        <p className="card-text">{shortDesc}</p>
-        <Button
-          title='View deck details'
-          onPress={onPress}
-          style={styles.button}
-        />
-      </div>
-    </View>
+    <Pressable style={styles.button} onPress={deckOnPress}>
+      <View className="card" style={styles.deck}>
+        <View style={styles.header}>
+          <Text style={styles.title}>{name}</Text>
+          <Image source={require(`../../../assets/${logo}`)} style={styles.img} />
+        </View>
+        {open && <View style={styles.body}>
+          <Text style={styles.description}>{shortDesc}</Text>
+          <Text style={styles.description}>Author: {author.name}</Text>
+          <Button
+            title='View deck details'
+            onPress={onPress}
+            style={styles.button}
+          />
+        </View>}
+      </View>
+    </Pressable>
   )
 }
 
 DeckSummary.defaultProps = {
   onPress: () => {},
-  name: '',
-  logo: '',
-  shortDesc: ''
+  name: 'Deck not found',
+  logo: 'favicon.png',
+  shortDesc: 'Deck description not found'
 }
 
 DeckSummary.propTypes = {

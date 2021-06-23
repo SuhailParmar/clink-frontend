@@ -1,8 +1,12 @@
 import React, { useState, useEffect, useLayoutEffect } from 'react';
-import { View } from 'react-native';
+import { Text, Image, View, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 import Screen from '../components/Screen';
-import { getDeck } from '../utils/http';
+import Button from '../components/Button';
+import { getDeck, getUser } from '../utils/http';
+
+const styles = StyleSheet.create({
+});
 
 const DeckScreen = ({
   navigation,
@@ -14,18 +18,34 @@ const DeckScreen = ({
 }) => {
   const [loading, setLoading] = useState(true);
   const [deck, setDeck] = useState({});
+  const [author, setAuthor] = useState([]);
 
   useEffect(() => {
     const getDeck_ = async () => {
       try {
+        setLoading(true);
         const response = await getDeck(id);
         setDeck(response);
         setLoading(false);
       } catch(e) {
-        console.warn(e);
+        console.error(e);
       }
     };
     getDeck_();
+  }, []);
+
+  useEffect(() => {
+    const getUser_ = async () => {
+      try {
+        setLoading(true);
+        const user = await getUser(id);
+        setAuthor(user);
+        setLoading(false);
+      } catch (e) {
+        console.error(e);
+      }
+    };
+    getUser_();
   }, []);
 
   useLayoutEffect(() => {
@@ -38,14 +58,22 @@ const DeckScreen = ({
   return (
     <Screen>
       {loading 
-        ? <View className='loading'/>
-        : deck && <View>
-            <img src={deck.logo} className="card-img-top" alt=""></img>
-            <div className="card-body">
-              <h5 className="card-title">{deck.name}</h5>
-              <p className="card-text">{deck.shortDesc}</p>
-            </div>
-          </View>
+        ? <View style={styles.loading}/>
+        : deck && author && <View>
+          <Text style={styles.title}>{deck.name}</Text>
+          <Image source={require(`../../assets/${deck.logo}`)} style={styles.img} />
+          <Text style={styles.description}>{deck.shortDesc}</Text>
+          <Text style={styles.description}>Author: {author.name}</Text>
+          {/* 
+            todo redirect to the Friends tab instead of profile
+            todo redirect to Profile if author === self OR hide button (requires user context to be set up)
+           */}
+          <Button
+            title="View author's profile"
+            onPress={() => navigation.navigate('Profile', { id: author.id })}
+            style={styles.button}
+          />
+        </View>
       }
     </Screen>
   );

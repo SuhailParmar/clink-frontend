@@ -1,12 +1,10 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import routes from './routes';
 import colours from './theming/colours';
 
 const Stack = createStackNavigator();
-const Tab = createBottomTabNavigator();
 
 function App() {
   return (

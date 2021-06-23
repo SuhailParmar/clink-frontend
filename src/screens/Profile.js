@@ -30,7 +30,7 @@ const ProfileScreen = ({ isOwnProfile }) => {
         const response = await getDecks(ids);
         setDecks(response);
       } catch (e) {
-        console.warn(e);
+        console.error(e);
       }
     }
     getDecks_();

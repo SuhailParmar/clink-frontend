@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { View, ScrollView, StyleSheet, TextInput } from 'react-native';
+import { View, ScrollView, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
-import { getDecks } from '../utils/http';
+import { getDecks, getUsers } from '../utils/http';
 import elements from '../theming/elements';
 import Screen from '../components/Screen';
+import Search from '../components/Search';
 import DeckSummary from '../components/DeckSummary/DeckSummary';
 
 const styles = StyleSheet.create({
@@ -21,11 +22,9 @@ const styles = StyleSheet.create({
 });
 
 const DecksScreen = ({ navigation }) => {
-  const [searchValue, setSearchValue] = useState('');
   const [completeDecklist, setCompleteDecklist] = useState([]);
   const [decklist, setDecklist] = useState([]);
-
-  let location = 'Deck'; // todo
+  const [users, setUsers] = useState([]);
   
   useEffect(() => {
     const getDecks_ = async () => {
@@ -40,21 +39,26 @@ const DecksScreen = ({ navigation }) => {
     getDecks_();
   }, []);
 
-  const search = (searchTerm) => {
-    setSearchValue(searchTerm);
-    const matchingDecks = completeDecklist.filter(deck => deck.name.toLowerCase().includes(searchTerm.toLowerCase())) ?? [];
-    console.log(completeDecklist, matchingDecks);
-    setDecklist(matchingDecks);
+  useEffect(() => {
+    const getUsers_ = async () => {
+      try {
+        const users = await getUsers();
+        setUsers(users);
+      } catch (e) {
+        console.error(e);
+      }
+    };
+    getUsers_();
+  }, []);
+
+  const onSearch = (searchTerm) => {
+    const matchingValues = completeDecklist.filter(deck => deck.name.toLowerCase().includes(searchTerm.toLowerCase())) ?? [];
+    setDecklist(matchingValues);
   }
 
   return ( 
     <Screen>
-      <TextInput 
-        onChangeText={search}
-        value={searchValue}
-        placeholder='Search here...'
-        style={styles.input}
-      />
+      <Search onSearch={onSearch} />
       <ScrollView style={styles.decksContainer}>
         <View style={styles.decksWrapper}>
           {decklist.map(deck => (
@@ -64,7 +68,8 @@ const DecksScreen = ({ navigation }) => {
               key={deck.id}
               logo={deck.logo}
               shortDesc={deck.shortDesc}
-              onPress={() => navigation.push(location, { ...deck })}
+              author={users.find(user => user.id === deck.authorId)}
+              onPress={() => navigation.push('Deck', { ...deck })}
             />
           ))}
         </View>
