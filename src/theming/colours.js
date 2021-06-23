@@ -31,5 +31,10 @@ export default {
     dark: '#008787',
     darker: '#006868',
   },
-  text: '#000',
+  grey: {
+    lighter: '#fefefe',
+    light: '#efefef',
+    normal: 'rgba(0, 0, 0, 0.5)',
+    dark: '#b5b5b5',
+  }
 };

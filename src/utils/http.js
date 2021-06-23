@@ -10,6 +10,7 @@ const baseUrl = isProd ? '' : 'localhost:5001';
 //endpoints
 const decks = 'Decks';
 const user = 'User';
+const users = 'Users';
 const lobby = 'Lobby';
 
 //headers
@@ -42,32 +43,44 @@ const updateDeck = (id, deck) => {
 const deleteDeck = (id) => {
   if (mockBackend) {
     delete mockDecks[mockDecks.findIndex(deck => deck.id === id)];
+    return;
   }
   return axios.delete(`${baseUrl}/${decks}/${id}`);
 }
 //#endregion
 
 //#region User
-const createUser = () => {
-  if (mockBackend) throw new Error('Mock users not implemented');
-  return axios.post(`${baseUrl}/${user}`);
+const getUsers = () => {
+  if (mockBackend) return mockUsers;
+  return axios.get(`${baseUrl}/${users}`);
+}
+const createUser = (user) => {
+  if (mockBackend) {
+    mockUsers.push(user);
+    return;
+  }
+  return axios.post(`${baseUrl}/${user}`, user);
 }
 const getUser = (id) => {
-  if (mockBackend) throw new Error('Mock users not implemented');
+  if (mockBackend) return mockUsers.find(user => user.id === id);
   return axios.get(`${baseUrl}/${user}/${id}`);
 }
 const updateUser = (id, user) => {
-  if (mockBackend) throw new Error('Mock users not implemented');
+  if (mockBackend) return mockUsers[mockUsers.findIndex(user => user.id === id)] = user;
   return axios.put(`${baseUrl}/${user}/${id}`, user);
 }
 const deleteUser = (id) => {
-  if (mockBackend) throw new Error('Mock users not implemented');
+  if (mockBackend) {
+    delete mockUsers[mockUsers.findIndex(user => user.id === id)];
+    return;
+  }
   return axios.delete(`${baseUrl}/${user}/${id}`);
 }
 //#endregion
 
 //#region Lobby
 const createLobby = () => {
+  if (mockBackend) throw new Error('Mock lobby not implemented');
   return axios.post(`${baseUrl}/${lobby}`);
 }
 //#endregion
@@ -79,6 +92,7 @@ export {
   getDeck,
   updateDeck,
   deleteDeck,
+  getUsers,
   createUser,
   getUser,
   updateUser,

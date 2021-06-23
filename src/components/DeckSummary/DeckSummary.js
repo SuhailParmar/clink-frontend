@@ -1,11 +1,11 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import Button from '../Button.js';
-import DeckStyles from './Deck.styles.js';
+import DeckStyles from './DeckSummary.styles.js';
 
 const styles = StyleSheet.create(DeckStyles);
 
-const Deck = ({ onPress, name, logo, shortDesc }) => {
+const DeckSummary = ({ onPress, name, logo, shortDesc }) => {
   return (
     <View className="card" style={styles.deck}>
       <img src={logo} className="card-img-top" alt=""></img>
@@ -22,4 +22,4 @@ const Deck = ({ onPress, name, logo, shortDesc }) => {
   )
 }
 
-export default Deck;
+export default DeckSummary;
