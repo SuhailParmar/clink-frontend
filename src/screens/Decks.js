@@ -12,8 +12,6 @@ const styles = StyleSheet.create({
   decksWrapper: {
     margin: 20,
     marginTop: 0,
-    display: 'grid',
-    gridColumns: 2
   },
   input: {
     height: 40,

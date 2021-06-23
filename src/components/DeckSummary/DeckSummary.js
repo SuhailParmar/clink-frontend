@@ -6,7 +6,7 @@ import DeckStyles from './DeckSummary.styles.js';
 
 const styles = StyleSheet.create(DeckStyles);
 
-const DeckSummary = ({ onPress, name, logo, shortDesc, author }) => {
+const DeckSummary = ({ onPress, name, logo, shortDesc, author, isOwnDeck }) => {
   const [open, isOpen] = useState(false);
 
   const deckOnPress = () => {
@@ -22,9 +22,9 @@ const DeckSummary = ({ onPress, name, logo, shortDesc, author }) => {
         </View>
         {open && <View style={styles.body}>
           <Text style={styles.description}>{shortDesc}</Text>
-          <Text style={styles.description}>Author: {author.name}</Text>
+          {!isOwnDeck && <Text style={styles.description}>Author: {author.name}</Text>}
           <Button
-            title='View deck details'
+            title={isOwnDeck ? 'Edit deck' : 'View deck details'}
             onPress={onPress}
             style={styles.button}
           />
@@ -38,14 +38,18 @@ DeckSummary.defaultProps = {
   onPress: () => {},
   name: 'Deck not found',
   logo: 'favicon.png',
-  shortDesc: 'Deck description not found'
+  shortDesc: 'Deck description not found',
+  author: { name: '' }, 
+  isOwnDeck: false
 }
 
 DeckSummary.propTypes = {
   onPress: PropTypes.func,
   name: PropTypes.string,
   logo: PropTypes.string,
-  shortDesc: PropTypes.string
+  shortDesc: PropTypes.string,
+  author: PropTypes.any,
+  isOwnDeck: PropTypes.bool
 }
 
 export default DeckSummary;

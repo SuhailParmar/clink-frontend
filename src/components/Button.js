@@ -8,7 +8,8 @@ const styles = StyleSheet.create({
   text: elements.buttonText
 });
 
-const Button = ({ onPress, title }) => {
+// todo style merging
+const Button = ({ onPress, title, style }) => {
   return (
     <Pressable style={styles.button} onPress={onPress}>
       <Text style={styles.text}>{title}</Text>
@@ -17,12 +18,14 @@ const Button = ({ onPress, title }) => {
 }
 
 Button.defaultProps = {
-  onPress: () => {}
+  onPress: () => {},
+  style: {}
 };
 
 Button.propTypes = {
   onPress: PropTypes.func,
-  title: PropTypes.string
+  title: PropTypes.string,
+  style: PropTypes.any,
 };
 
 export default Button;
