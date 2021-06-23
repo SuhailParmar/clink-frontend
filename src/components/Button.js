@@ -1,5 +1,6 @@
 import React from 'react';
 import { Text, StyleSheet, Pressable } from 'react-native';
+import PropTypes from 'prop-types';
 import elements from '../theming/elements';
 
 const styles = StyleSheet.create({
@@ -14,5 +15,14 @@ const Button = ({ onPress, title }) => {
     </Pressable>
   );
 }
+
+Button.defaultProps = {
+  onPress: () => {}
+};
+
+Button.propTypes = {
+  onPress: PropTypes.func,
+  title: PropTypes.string
+};
 
 export default Button;

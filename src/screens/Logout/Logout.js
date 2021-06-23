@@ -1,5 +1,6 @@
 import React from 'react';
 // import GoogleLogout from 'react-google-login';
+import Screen from '../../components/Screen.js';
 
 const LogoutScreen = props => {
 
@@ -10,7 +11,7 @@ const LogoutScreen = props => {
   }
 
   return (
-    <View>
+    <Screen>
       <Text>
         Sign in
       </Text>
@@ -22,7 +23,7 @@ const LogoutScreen = props => {
         cookiePolicy={'single_host_origin'}
         isSignedIn={true}
       /> */}
-    </View>
+    </Screen>
   )
 }
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 // import GoogleLogin from 'react-google-login';
+import Screen from '../../components/Screen.js';
 import setupTokenRefresh from '../../utils/setupTokenRefresh';
 import { setId } from '../../utils/http';
 import * as clientId from '../../clientId';
@@ -21,7 +22,7 @@ const LoginScreen = props => {
   // }
 
   return (
-    <View>
+    <Screen>
       <Text>
         Sign in
       </Text>
@@ -33,7 +34,7 @@ const LoginScreen = props => {
         cookiePolicy={'single_host_origin'}
         isSignedIn={true}
       /> */}
-    </View>
+    </Screen>
   )
 }
 

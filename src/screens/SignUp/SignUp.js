@@ -1,11 +1,12 @@
 import React from 'react';
+import Screen from '../../components/Screen.js';
 
 const SignUpScreen = props => (
-  <View>
+  <Screen>
     <Text>
       Sign up
     </Text>
-  </View>
-)
+  </Screen>
+);
 
-export default SignUpScreen
+export default SignUpScreen;

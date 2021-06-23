@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { View, ScrollView, StyleSheet, TextInput } from 'react-native';
+import PropTypes from 'prop-types';
 import { getDecks } from '../../utils/http';
 import elements from '../../theming/elements';
 import Screen from '../../components/Screen';
 import DeckSummary from '../../components/DeckSummary/DeckSummary';
 
 const styles = StyleSheet.create({
-  decksContainer: {
-    
-  },
+  decksContainer: {},
   decksWrapper: {
     margin: 20,
     marginTop: 0,
@@ -72,6 +71,10 @@ const DecksScreen = ({ navigation }) => {
       </ScrollView>
     </Screen>
   );
+}
+
+DecksScreen.propTypes = {
+  navigation: PropTypes.any.isRequired,
 }
 
 export default DecksScreen;

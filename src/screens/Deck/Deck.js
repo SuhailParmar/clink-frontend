@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useLayoutEffect } from 'react';
 import { View } from 'react-native';
+import PropTypes from 'prop-types';
 import Screen from '../../components/Screen';
 import { getDeck } from '../../utils/http';
 
@@ -49,5 +50,10 @@ const DeckScreen = ({
     </Screen>
   );
 };
+
+DeckScreen.propTypes = {
+  navigation: PropTypes.any.isRequired,
+  route: PropTypes.any.isRequired,
+}
 
 export default DeckScreen;

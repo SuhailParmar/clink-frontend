@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
+import PropTypes from 'prop-types';
 import Button from '../Button.js';
 import DeckStyles from './DeckSummary.styles.js';
 
@@ -20,6 +21,20 @@ const DeckSummary = ({ onPress, name, logo, shortDesc }) => {
       </div>
     </View>
   )
+}
+
+DeckSummary.defaultProps = {
+  onPress: () => {},
+  name: '',
+  logo: '',
+  shortDesc: ''
+}
+
+DeckSummary.propTypes = {
+  onPress: PropTypes.func,
+  name: PropTypes.string,
+  logo: PropTypes.string,
+  shortDesc: PropTypes.string
 }
 
 export default DeckSummary;

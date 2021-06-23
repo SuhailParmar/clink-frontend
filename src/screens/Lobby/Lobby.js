@@ -1,11 +1,13 @@
 import React from 'react';
+import { Text } from 'react-native';
+import Screen from '../../components/Screen.js';
 
 const LobbyScreen = props => (
-  <View>
+  <Screen>
     <Text>
       Lobby
     </Text>
-  </View>
+  </Screen>
 )
 
 export default LobbyScreen;
