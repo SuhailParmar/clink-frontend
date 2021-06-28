@@ -1,3 +1,4 @@
+import AddFriendsScreen from './screens/AddFriends';
 import DeckScreen from './screens/Deck';
 import DecksScreen from './screens/Decks';
 import FriendsScreen from './screens/Friends';
@@ -21,6 +22,10 @@ const mainRoutes = [
   {
     name: 'Lobby',
     component: LobbyScreen
+  },
+  {
+    name: 'Add a Friend',
+    component: AddFriendsScreen
   },
 ];
 

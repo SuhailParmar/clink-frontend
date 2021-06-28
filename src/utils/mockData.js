@@ -17,12 +17,12 @@ const mockDecks = [
 ];
 
 const mockUsers = [
-  { id: '1', email: 'a@a.com', gamesPlayed: 0, gamesWon: 0, profilePicture: 'favicon.png', decks: ['1'], name: 'Richard Richardson' }, 
-  { id: '2', email: 'a@a.com', gamesPlayed: 0, gamesWon: 0, profilePicture: 'favicon.png', decks: ['2'], name: 'Adam Adamson' }, 
-  { id: '3', email: 'a@a.com', gamesPlayed: 0, gamesWon: 0, profilePicture: 'favicon.png', decks: ['3'], name: 'Thomas Thompson' }, 
-  { id: '4', email: 'a@a.com', gamesPlayed: 0, gamesWon: 0, profilePicture: 'favicon.png', decks: ['4'], name: 'Angela Angel' }, 
-  { id: '5', email: 'a@a.com', gamesPlayed: 0, gamesWon: 0, profilePicture: 'favicon.png', decks: ['5'], name: 'Ruth Ruthson' },
-  { id: '6', email: 'a@a.com', gamesPlayed: 0, gamesWon: 0, profilePicture: 'favicon.png', decks: ['6', '7', '8', '9', '10', '11', '12', '13', '14', '15'], name: 'Fredrick Fredickson' },
+  { id: '1', email: 'a@a.com', gamesPlayed: 0, gamesWon: 0, profilePicture: 'favicon.png', friends: [], decks: ['1'], name: 'Richard Richardson' }, 
+  { id: '2', email: 'a@a.com', gamesPlayed: 0, gamesWon: 0, profilePicture: 'favicon.png', friends: ['1', '3'], decks: ['2'], name: 'Adam Adamson' }, 
+  { id: '3', email: 'a@a.com', gamesPlayed: 0, gamesWon: 0, profilePicture: 'favicon.png', friends: ['1', '3'], decks: ['3'], name: 'Thomas Thompson' }, 
+  { id: '4', email: 'a@a.com', gamesPlayed: 0, gamesWon: 0, profilePicture: 'favicon.png', friends: ['1', '3'], decks: ['4'], name: 'Angela Angel' }, 
+  { id: '5', email: 'a@a.com', gamesPlayed: 0, gamesWon: 0, profilePicture: 'favicon.png', friends: ['1', '3'], decks: ['5'], name: 'Ruth Ruthson' },
+  { id: '6', email: 'a@a.com', gamesPlayed: 0, gamesWon: 0, profilePicture: 'favicon.png', friends: ['1', '3'], decks: ['6', '7', '8', '9', '10', '11', '12', '13', '14', '15'], name: 'Fredrick Fredickson' },
 ];
 
 export {

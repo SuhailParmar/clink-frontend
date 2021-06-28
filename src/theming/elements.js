@@ -1,5 +1,9 @@
 import colours from './colours';
 
+const containerBase = {
+  margin: 20,
+};
+
 export default {
   button: {
     alignItems: 'center',
@@ -19,8 +23,17 @@ export default {
     letterSpacing: 0.25,
     color: 'white',
   },
+  containerBase,
+  containerText: {
+    ...containerBase,
+    marginTop: 0,
+  },
+  containerScreen: {
+    ...containerBase,
+    marginTop: 0,
+  },
   input: {
-    margin: 15,
+    ...containerBase,
     padding: 10,
     backgroundColor: colours.grey.lighter,
     borderRadius: 4,

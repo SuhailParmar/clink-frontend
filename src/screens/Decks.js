@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { useFocusEffect } from '@react-navigation/native';
 import { View, ScrollView, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
@@ -11,13 +11,10 @@ import DeckSummary from '../components/DeckSummary/DeckSummary';
 
 const styles = StyleSheet.create({
   decksContainer: {},
-  decksWrapper: {
-    margin: 20,
-    marginTop: 0,
-  },
+  decksWrapper: elements.containerScreen,
   input: {
     height: 40,
-    ...elements.input
+    ...elements.input,
   }
 });
 
@@ -52,11 +49,11 @@ const DecksScreen = (props) => {
     getUsers_();
   }, []);
 
-  useFocusEffect(() => {
+  useFocusEffect(useCallback(() => {
     setHomeOptions({
       title: tabRoutes.find(route => route.component === DecksScreen).name,
     });
-  }, [setHomeOptions]);
+  }, [setHomeOptions]));
 
   const onSearch = (searchTerm) => {
     const matchingValues = completeDecklist.filter(deck => deck.name.toLowerCase().includes(searchTerm.toLowerCase())) ?? [];

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useFocusEffect } from '@react-navigation/native';
 import { View, Text, Image, ScrollView, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
@@ -39,10 +39,8 @@ const styles = StyleSheet.create({
     marginTop: 10
   },
   decksContainer: {},
-  decksWrapper: {
-    margin: 20,
-    marginTop: 0,
-  },
+  decksWrapper: elements.containerScreen,
+  containerText: elements.containerText,
 });
 
 const ProfileScreen = (props) => {
@@ -77,14 +75,14 @@ const ProfileScreen = (props) => {
     getDecks_();
   }, []);
 
-  useFocusEffect(() => {
+  useFocusEffect(useCallback(() => {
     setHomeOptions({
       title: tabRoutes.find(route => 
         route.component === OwnProfileScreen
         || route.component === ProfileScreen
       ).name,
     });
-  }, [setHomeOptions]);
+  }, [setHomeOptions]));
 
   return (
     <Screen>
@@ -100,7 +98,7 @@ const ProfileScreen = (props) => {
           <Text style={styles.field}>Decks created: {user.decks}</Text>
           <Button title='Update profile' style={styles.updateProfileButton} />
         </View>
-        <Text>Your Decks</Text>
+        <Text style={styles.containerText}>Your Decks</Text>
         {decks && <>
           <ScrollView style={styles.decksContainer}>
             <View style={styles.decksWrapper}>
