@@ -1,0 +1,12 @@
+add fetch (is graphQL possible?)
+fix signup/login/logout
+add loading animation of glasses clinking and liquid sloshing
+fix deck not redirecting to correct profile
+add friends 
+  shows your friends, 
+  can tap to go to their profile, 
+  can tap to go to another screen to search for friends
+add filters to search
+add create deck
+add editable decks
+add likes/stars to deck summary

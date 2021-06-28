@@ -6,7 +6,14 @@ import colours from '../theming/colours';
 
 const Tab = createBottomTabNavigator();
 
-function App() {
+// a wrapper that allows us to pass props from HomeScreen to a tab screen component
+const componentWrapper = (Component, props) => (rest) => <Component { ...props } { ...rest } />
+
+function App({ navigation }) {
+  const setHomeOptions = (options) => {
+    navigation.setOptions(options)
+  }
+
   return (
     <Tab.Navigator
       initialRouteName='Decks'
@@ -34,7 +41,7 @@ function App() {
         <Tab.Screen 
           name={r.name} 
           key={r.name} 
-          component={r.component}
+          component={componentWrapper(r.component, { setHomeOptions } )}
           options={r?.options} />
       ))}
     </Tab.Navigator>

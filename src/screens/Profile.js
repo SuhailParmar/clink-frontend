@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import { useFocusEffect } from '@react-navigation/native';
 import { View, Text, Image, ScrollView, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
+import { tabRoutes } from '../routes';
+import { getUser, getDecks } from '../utils/http';
+import elements from '../theming/elements';
 import Screen from '../components/Screen';
 import Button from '../components/Button';
 import DeckSummary from '../components/DeckSummary/DeckSummary.js';
-import { getUser, getDecks } from '../utils/http';
-import elements from '../theming/elements';
+import OwnProfileScreen from './OwnProfile';
 
 const styles = StyleSheet.create({
   profile: {
@@ -42,7 +45,8 @@ const styles = StyleSheet.create({
   },
 });
 
-const ProfileScreen = ({ isOwnProfile }) => {
+const ProfileScreen = (props) => {
+  const { isOwnProfile, setHomeOptions } = props;
   const [user, setUser] = useState(null);
   const [decks, setDecks] = useState(null);
 
@@ -72,6 +76,15 @@ const ProfileScreen = ({ isOwnProfile }) => {
     }
     getDecks_();
   }, []);
+
+  useFocusEffect(() => {
+    setHomeOptions({
+      title: tabRoutes.find(route => 
+        route.component === OwnProfileScreen
+        || route.component === ProfileScreen
+      ).name,
+    });
+  }, [setHomeOptions]);
 
   return (
     <Screen>
@@ -111,11 +124,12 @@ const ProfileScreen = ({ isOwnProfile }) => {
 };
 
 ProfileScreen.defaultProps = {
-  isOwnProfile: false
+  isOwnProfile: false,
 }
 
 ProfileScreen.propTypes = {
-  isOwnProfile: PropTypes.bool
+  isOwnProfile: PropTypes.bool,
+  setHomeOptions: PropTypes.func.isRequired
 }
 
 export default ProfileScreen;

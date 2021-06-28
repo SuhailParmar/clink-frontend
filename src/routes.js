@@ -22,6 +22,9 @@ const mainRoutes = [
     name: 'Lobby',
     component: LobbyScreen
   },
+];
+
+const authRoutes = [
   {
     name: 'Sign Up',
     component: SignUpScreen
@@ -43,8 +46,7 @@ const tabRoutes = [
   },
   {
     name: 'Profile',
-    component: OwnProfileScreen,
-    options: { isOwnProfile: true }
+    component: OwnProfileScreen
   },
   {
     name: 'Friends',
@@ -55,5 +57,6 @@ const tabRoutes = [
 
 export default mainRoutes;
 export {
+  authRoutes,
   tabRoutes
 };

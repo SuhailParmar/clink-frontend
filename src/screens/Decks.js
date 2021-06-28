@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { useFocusEffect } from '@react-navigation/native';
 import { View, ScrollView, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
+import { tabRoutes } from '../routes';
 import { getDecks, getUsers } from '../utils/http';
 import elements from '../theming/elements';
 import Screen from '../components/Screen';
@@ -19,7 +21,8 @@ const styles = StyleSheet.create({
   }
 });
 
-const DecksScreen = ({ navigation }) => {
+const DecksScreen = (props) => {
+  const { navigation, setHomeOptions } = props;
   const [completeDecklist, setCompleteDecklist] = useState([]);
   const [decklist, setDecklist] = useState([]);
   const [users, setUsers] = useState([]);
@@ -48,6 +51,12 @@ const DecksScreen = ({ navigation }) => {
     };
     getUsers_();
   }, []);
+
+  useFocusEffect(() => {
+    setHomeOptions({
+      title: tabRoutes.find(route => route.component === DecksScreen).name,
+    });
+  }, [setHomeOptions]);
 
   const onSearch = (searchTerm) => {
     const matchingValues = completeDecklist.filter(deck => deck.name.toLowerCase().includes(searchTerm.toLowerCase())) ?? [];
@@ -78,6 +87,7 @@ const DecksScreen = ({ navigation }) => {
 
 DecksScreen.propTypes = {
   navigation: PropTypes.any.isRequired,
+  setHomeOptions: PropTypes.func.isRequired
 }
 
 export default DecksScreen;

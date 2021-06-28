@@ -13,8 +13,12 @@ const styles = StyleSheet.create({
 
 const Screen = ({ children }) => <View style={styles.container}>{children}</View>
 
+Screen.defaultProps = {
+  children: null
+};
+
 Screen.propTypes = {
-  children: PropTypes.node.isRequired
+  children: PropTypes.node
 };
 
 
