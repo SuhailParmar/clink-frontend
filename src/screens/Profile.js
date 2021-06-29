@@ -1,9 +1,10 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useContext } from 'react';
 import { useFocusEffect } from '@react-navigation/native';
 import { View, Text, Image, ScrollView, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 import { tabRoutes } from '../routes';
 import { getUser, getDecks } from '../utils/http';
+import UserContext from '../contexts/UserContext';
 import elements from '../theming/elements';
 import Screen from '../components/Screen';
 import Button from '../components/Button';
@@ -44,17 +45,22 @@ const styles = StyleSheet.create({
 });
 
 const ProfileScreen = (props) => {
-  const { isOwnProfile, setHomeOptions } = props;
+  const { isOwnProfile, setHomeOptions, route, navigation } = props;
+  const userId = route?.params?.userId;
+
   const [user, setUser] = useState(null);
   const [decks, setDecks] = useState(null);
+  const currentUser = useContext(UserContext);
 
   useEffect(() => {
     const getUser_ = async () => {
       try {
-        // todo get own id from user context
-        const id_ = isOwnProfile ? '1' : id;
-        const response = await getUser(id_);
-        setUser(response);
+        if(isOwnProfile && !userId) { // todo sort out logic for passing props
+          setUser(currentUser);
+        } else {
+          const response = await getUser(userId);
+          setUser(response);
+        }
       } catch (e) {
         console.error(e);
       }
@@ -76,13 +82,21 @@ const ProfileScreen = (props) => {
   }, []);
 
   useFocusEffect(useCallback(() => {
-    setHomeOptions({
-      title: tabRoutes.find(route => 
-        route.component === OwnProfileScreen
-        || route.component === ProfileScreen
-      ).name,
-    });
-  }, [setHomeOptions]));
+    // set screen title
+    if(isOwnProfile && !userId) { // todo
+      setHomeOptions({
+        title: tabRoutes.find(route => 
+          route.component === OwnProfileScreen
+          || route.component === ProfileScreen
+        ).name,
+      });
+    } else {
+      if(!user) return;
+      navigation.setOptions({
+        title: `${user.name}'s Profile`
+      })
+    }
+  }, [setHomeOptions, user]));
 
   return (
     <Screen>
@@ -95,8 +109,8 @@ const ProfileScreen = (props) => {
           <Text style={styles.field}>Email address: {user.email}</Text>
           <Text style={styles.field}>Games played: {user.gamesPlayed}</Text>
           <Text style={styles.field}>Games won: {user.gamesWon}</Text>
-          <Text style={styles.field}>Decks created: {user.decks}</Text>
-          <Button title='Update profile' style={styles.updateProfileButton} />
+          <Text style={styles.field}>Decks created: {user.decks.length}</Text>
+          {isOwnProfile && <Button title='Update profile' style={styles.updateProfileButton} />}
         </View>
         <Text style={styles.containerText}>Your Decks</Text>
         {decks && <>
@@ -123,11 +137,14 @@ const ProfileScreen = (props) => {
 
 ProfileScreen.defaultProps = {
   isOwnProfile: false,
+  setHomeOptions: () => {},
 }
 
 ProfileScreen.propTypes = {
   isOwnProfile: PropTypes.bool,
-  setHomeOptions: PropTypes.func.isRequired
+  setHomeOptions: PropTypes.func,
+  route: PropTypes.any.isRequired,
+  navigation: PropTypes.any.isRequired,
 }
 
 export default ProfileScreen;

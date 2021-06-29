@@ -1,9 +1,10 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useContext } from 'react';
 import { useFocusEffect } from '@react-navigation/native';
 import { View, Text, ScrollView, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 import { tabRoutes } from '../routes';
 import { getFriends, removeFriend, getUsers } from '../utils/http';
+import UserContext from '../contexts/UserContext';
 import elements from '../theming/elements';
 import Button from '../components/Button.js';
 import Screen from '../components/Screen.js';
@@ -36,12 +37,12 @@ const styles = StyleSheet.create({
 const FriendsScreen = ({ navigation, setHomeOptions }) => {
   const [completeFriendsList, setCompleteFriendsList] = useState([]);
   const [friendsList, setFriendsList] = useState([]);
-  const userId = '1';
+  const currentUser = useContext(UserContext);
   
   useFocusEffect(useCallback(() => {
     const getFriends_ = async () => {
       try {
-        const friendsIds = await getFriends(userId);
+        const friendsIds = await getFriends(currentUser.id);
         if(friendsIds.length > 0) {
           const friends = await getUsers(friendsIds);
           setCompleteFriendsList(friends);
@@ -66,7 +67,7 @@ const FriendsScreen = ({ navigation, setHomeOptions }) => {
   }
 
   const onRemoveFriend = async (friend) => {
-    await removeFriend(userId, friend.id); // todo implement snackbar/banner feedback
+    await removeFriend(currentUser.id, friend.id); // todo implement snackbar/banner feedback
 
     // permenantly remove friend from list
     const friends = [ ...friendsList ];

@@ -7,6 +7,7 @@ import LobbyScreen from './screens/Lobby';
 import LoginScreen from './screens/Login';
 import LogoutScreen from './screens/Logout';
 import OwnProfileScreen from './screens/OwnProfile';
+import ProfileScreen from './screens/Profile';
 import SignUpScreen from './screens/SignUp';
 
 const mainRoutes = [
@@ -26,6 +27,10 @@ const mainRoutes = [
   {
     name: 'Add a Friend',
     component: AddFriendsScreen
+  },
+  {
+    name: 'Profile',
+    component: ProfileScreen
   },
 ];
 

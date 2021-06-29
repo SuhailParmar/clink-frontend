@@ -1,7 +1,8 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useContext } from 'react';
 import { View, Text, ScrollView, StyleSheet } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import { addFriend, getFriends, getUsers } from '../utils/http';
+import UserContext from '../contexts/UserContext';
 import elements from '../theming/elements';
 import Button from '../components/Button.js';
 import Screen from '../components/Screen.js';
@@ -33,14 +34,14 @@ const styles = StyleSheet.create({
 const AddFriendsScreen = () => {
   const [completeUsersList, setCompleteUsersList] = useState([]);
   const [usersList, setUsersList] = useState([]);
-  const userId = '1';
+  const currentUser = useContext(UserContext);
   
   useFocusEffect(useCallback(() => {
     const getUsers_ = async () => {
       try {
-        const [users, friendsIds] = await Promise.all([getUsers(), getFriends(userId)]);
+        const [users, friendsIds] = await Promise.all([getUsers(), getFriends(currentUser.id)]);
         // filter out self, and users already on friendslist
-        const filteredUsers = users.filter(user => user.id !== userId && !friendsIds.includes(user.id));
+        const filteredUsers = users.filter(user => user.id !== currentUser.id && !friendsIds.includes(user.id));
         setCompleteUsersList(filteredUsers);
         setUsersList(filteredUsers);
       } catch (e) {
@@ -56,7 +57,7 @@ const AddFriendsScreen = () => {
   }
 
   const onAddFriend = async (friend) => {
-    await addFriend(userId, friend.id); // todo implement snackbar/banner feedback
+    await addFriend(currentUser.id, friend.id); // todo implement snackbar/banner feedback
 
     // permenantly remove user from list
     const users = [ ...usersList ];

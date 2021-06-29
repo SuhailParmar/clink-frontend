@@ -1,4 +1,3 @@
-implement user context
 add fetch (is graphQL possible?)
 fix signup/login/logout
 add loading animation of glasses clinking and liquid sloshing
@@ -8,3 +7,5 @@ add filters to search
 add create deck
 add editable decks
 add likes/stars to deck summary
+add lobbies, QR codes to join
+add failed to load/error page

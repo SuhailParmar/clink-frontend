@@ -35,10 +35,11 @@ const DeckScreen = ({
   }, []);
 
   useEffect(() => {
+    if(!deck) return;
     const getUser_ = async () => {
       try {
         setLoading(true);
-        const user = await getUser(id);
+        const user = await getUser(deck.authorId);
         setAuthor(user);
         setLoading(false);
       } catch (e) {
@@ -46,7 +47,7 @@ const DeckScreen = ({
       }
     };
     getUser_();
-  }, []);
+  }, [deck]);
 
   useLayoutEffect(() => {
     if(!deck.name) return;
@@ -70,7 +71,7 @@ const DeckScreen = ({
            */}
           <Button
             title="View author's profile"
-            onPress={() => navigation.navigate('Profile', { id: author.id })}
+            onPress={() => navigation.push('Profile', { userId: author.id })}
             style={styles.button}
           />
         </View>
