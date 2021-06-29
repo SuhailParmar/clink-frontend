@@ -26,8 +26,11 @@ const setId = (id) => {
 }
 
 //#region Decks
-const getDecks = () => {
-  if (mockBackend) return mockDecks;
+const getDecks = (ids) => {
+  if (mockBackend) {
+    if(!ids) return mockDecks;
+    return mockDecks.filter(deck => ids.includes(deck.id))
+  }
   return axios.get(`${baseUrl}/${decks}`);
 }
 const createDeck = (deck) => {

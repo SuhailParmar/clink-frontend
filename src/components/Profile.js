@@ -64,7 +64,7 @@ const ProfileScreen = ({
         {decks && <>
           <ScrollView style={styles.decksContainer}>
             <View style={styles.decksWrapper}>
-              {decks.filter(deck => deck.authorId === user.id).map(deck => 
+              {decks.map(deck => 
                 <DeckSummary
                   name={deck.name}
                   id={deck.id}

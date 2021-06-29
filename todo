@@ -1,12 +1,11 @@
-add loading spinner/an animation that disguises loading
-add fetch (is graphQL possible?)
+add simple loading spinner/an animation that disguises loading
 fix signup/login/logout
-add loading animation of glasses clinking and liquid sloshing
-fix deck not redirecting to correct profile
-on add friends page, add ability to view their profile
-add filters to search
-add create deck
-add editable decks
+fix viewing your own deck doesn't lead to OwnProfile
+add fetch (is graphQL possible?)
+add longer loading animation of glasses clinking and liquid sloshing
+add ability to view profiles on the add friends page
+add filters to search component
+add create/edit deck
 add likes/stars to deck summary
 add lobbies, QR codes to join
-add failed to load/error page
+add failed to load/error page with a retry/error-recovery button
