@@ -22,7 +22,7 @@ const DeckSummary = ({ onPress, name, logo, shortDesc, author, isOwnDeck }) => {
         </View>
         {open && <View style={styles.body}>
           <Text style={styles.description}>{shortDesc}</Text>
-          {!isOwnDeck && <Text style={styles.description}>Author: {author.name}</Text>}
+          <Text style={styles.description}>{!isOwnDeck ? `Author: ${author.name}` : 'Created by you'}</Text>
           <Button
             title={isOwnDeck ? 'Edit deck' : 'View deck details'}
             onPress={onPress}

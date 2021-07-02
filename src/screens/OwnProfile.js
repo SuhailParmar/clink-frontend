@@ -31,7 +31,7 @@ const OwnProfileScreen = ({ navigation, route, setHomeOptions }) => {
 
   return (
     <Profile 
-      isOwnProfile={false}
+      isOwnProfile
       user={currentUser}
       decks={decks}
       navigation={navigation}

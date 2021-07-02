@@ -8,24 +8,26 @@ const styles = StyleSheet.create({
   text: elements.buttonText
 });
 
-// todo style merging
-const Button = ({ onPress, title, style }) => {
+const Button = ({ onPress, title, styleButton, styleText }) => {
   return (
-    <Pressable style={styles.button} onPress={onPress}>
-      <Text style={styles.text}>{title}</Text>
+    <Pressable style={[styles.button, styleButton]} onPress={onPress}>
+      <Text style={[styles.text, styleText]}>{title}</Text>
     </Pressable>
   );
 }
 
 Button.defaultProps = {
   onPress: () => {},
-  style: {}
+  title: '',
+  styleButton: {},
+  styleText: {},
 };
 
 Button.propTypes = {
   onPress: PropTypes.func,
   title: PropTypes.string,
-  style: PropTypes.any,
+  styleButton: PropTypes.any,
+  styleText: PropTypes.any,
 };
 
 export default Button;

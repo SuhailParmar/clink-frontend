@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
   containerText: elements.containerText,
 });
 
-const ProfileScreen = ({
+const Profile = ({
   isOwnProfile,
   user,
   decks,
@@ -58,7 +58,7 @@ const ProfileScreen = ({
           <Text style={styles.field}>Games played: {user.gamesPlayed}</Text>
           <Text style={styles.field}>Games won: {user.gamesWon}</Text>
           <Text style={styles.field}>Decks created: {user.decks.length}</Text>
-          {isOwnProfile && <Button title='Update profile' style={styles.updateProfileButton} />}
+          {isOwnProfile && <Button title='Update profile' styleButton={styles.updateProfileButton} />}
         </View>
         <Text style={styles.containerText}>{isOwnProfile ? 'Your' : 'Their'} Decks</Text>
         {decks && <>
@@ -83,17 +83,17 @@ const ProfileScreen = ({
   );
 };
 
-ProfileScreen.defaultProps = {
+Profile.defaultProps = {
   isOwnProfile: false,
   user: null,
   decks: null
 }
 
-ProfileScreen.propTypes = {
+Profile.propTypes = {
   isOwnProfile: PropTypes.bool,
   user: PropTypes.any,
   decks: PropTypes.any,
   navigation: PropTypes.any.isRequired,
 }
 
-export default ProfileScreen;
+export default Profile;

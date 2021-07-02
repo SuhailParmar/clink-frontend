@@ -1,9 +1,10 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState, useCallback, useContext } from 'react';
 import { useFocusEffect } from '@react-navigation/native';
 import { View, ScrollView, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 import { tabRoutes } from '../routes';
 import { getDecks, getUsers } from '../utils/http';
+import UserContext from '../contexts/UserContext';
 import elements from '../theming/elements';
 import Screen from '../components/Screen';
 import Search from '../components/Search';
@@ -23,6 +24,7 @@ const DecksScreen = (props) => {
   const [completeDecklist, setCompleteDecklist] = useState([]);
   const [decklist, setDecklist] = useState([]);
   const [users, setUsers] = useState([]);
+  const currentUser = useContext(UserContext);
   
   useEffect(() => {
     const getDecks_ = async () => {
@@ -74,6 +76,7 @@ const DecksScreen = (props) => {
               shortDesc={deck.shortDesc}
               author={users.find(user => user.id === deck.authorId)}
               onPress={() => navigation.push('Deck', { ...deck })}
+              isOwnDeck={currentUser?.id === deck.authorId}
             />
           ))}
         </View>
