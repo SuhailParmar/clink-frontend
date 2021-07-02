@@ -8,6 +8,7 @@ import elements from '../theming/elements';
 import Screen from '../components/Screen';
 import Search from '../components/Search';
 import DeckSummary from '../components/DeckSummary/DeckSummary';
+import Loading from '../components/animated/Loading';
 
 const styles = StyleSheet.create({
   decksContainer: {},
@@ -62,6 +63,7 @@ const DecksScreen = (props) => {
 
   return ( 
     <Screen>
+      <Loading isLoading />
       <Search onSearch={onSearch} />
       <ScrollView style={styles.decksContainer}>
         <View style={styles.decksWrapper}>
