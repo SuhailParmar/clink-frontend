@@ -34,7 +34,7 @@ const mainRoutes = [
   },
 ];
 
-const authRoutes = [
+const unauthenticatedRoutes = [
   {
     name: 'Sign Up',
     component: SignUpScreen
@@ -67,6 +67,6 @@ const tabRoutes = [
 
 export default mainRoutes;
 export {
-  authRoutes,
+  unauthenticatedRoutes,
   tabRoutes
 };

@@ -4,10 +4,7 @@ import PropTypes from 'prop-types';
 import elements from '../theming/elements';
 
 const styles = StyleSheet.create({
-  input: {
-    height: 40,
-    ...elements.input
-  }
+  input: elements.input
 });
 
 const Search = ({ onSearch }) => {

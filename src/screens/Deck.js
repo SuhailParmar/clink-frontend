@@ -1,9 +1,10 @@
-import React, { useState, useEffect, useLayoutEffect } from 'react';
+import React, { useState, useEffect, useLayoutEffect, useContext } from 'react';
 import { Text, Image, View, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 import Screen from '../components/Screen';
 import Button from '../components/Button';
 import { getDeck, getUser } from '../utils/http';
+import UserContext from '../contexts/UserContext';
 
 const styles = StyleSheet.create({
 });
@@ -19,6 +20,9 @@ const DeckScreen = ({
   const [loading, setLoading] = useState(true);
   const [deck, setDeck] = useState({});
   const [author, setAuthor] = useState([]);
+  const currentUser = useContext(UserContext);
+
+  const isOwnDeck = currentUser?.id === author?.id;
 
   useEffect(() => {
     const getDeck_ = async () => {
@@ -69,11 +73,11 @@ const DeckScreen = ({
             todo redirect to the Friends tab instead of profile
             todo redirect to Profile if author === self OR hide button (requires user context to be set up)
            */}
-          <Button
+          {!isOwnDeck && <Button
             title="View author's profile"
             onPress={() => navigation.push('Profile', { userId: author.id })}
             style={styles.button}
-          />
+          />}
         </View>
       }
     </Screen>
