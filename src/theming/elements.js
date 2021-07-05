@@ -34,6 +34,7 @@ export default {
   },
   input: {
     ...containerBase,
+    height: 40,
     padding: 10,
     backgroundColor: colours.grey.lighter,
     borderRadius: 4,

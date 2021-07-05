@@ -1,12 +1,18 @@
-add simple loading spinner/an animation that disguises loading
-fix signup/login/logout
-implement caching
-fix removing the first friend in friends list doesn't allow you to re-add them, and the second friend appears in the users list instead
-add fetch (is graphQL possible?)
-add longer loading animation of glasses clinking and liquid sloshing
-add ability to view profiles on the add friends page
-add filters to search component
-add create/edit deck
-add likes/stars to deck summary
-add lobbies, codes to join
-add failed to load/error page with a retry/error-recovery button
+authentication
+  implement signup screen
+  add proper login form
+  re-implement google openID connect
+bugs
+  fix memory leak on login screen
+  fix removing the first friend in friends list doesn't allow you to re-add them, and the second friend appears in the users list instead
+misc 
+  add fetch (is graphQL possible?)
+features
+  add simple loading spinner/an animation that disguises loading
+  add longer loading animation of glasses clinking and liquid sloshing
+  add ability to view profiles on the add friends page
+  add filters to search component
+  add create/edit deck
+  add likes/stars to deck summary
+  add lobbies, codes to join
+  add failed to load/error page with a retry/error-recovery button

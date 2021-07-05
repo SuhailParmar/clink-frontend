@@ -13,7 +13,7 @@ function App() {
   const [user, setUser] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  const login = (isAuth) => setIsAuthenticated(isAuth);
+  const login = () => setIsAuthenticated(true);
   const updateUserContext = (user) => setUser(user);
 
   // switch stack completely, to prevent user from being able to go back to login screen
