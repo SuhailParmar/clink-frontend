@@ -13,8 +13,8 @@ export default {
     elevation: 3,
     backgroundColor: colours.complement.normal,
     borderRadius: 4,
-    boxShadow: `0 4px 5px ${colours.grey.normal}`,
-    cursor: 'pointer'
+    // boxShadow: `0 4px 5px ${colours.grey.normal}`,
+    // cursor: 'pointer'
   },
   buttonText: {
     fontSize: 16,
@@ -38,6 +38,6 @@ export default {
     padding: 10,
     backgroundColor: colours.grey.lighter,
     borderRadius: 4,
-    border: `1px solid ${colours.grey.dark}`,
+    // border: `1px solid ${colours.grey.dark}`,
   }
 };

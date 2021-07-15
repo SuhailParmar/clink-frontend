@@ -1,4 +1,5 @@
 import AddFriendsScreen from './screens/AddFriends';
+import CreateDeckScreen from './screens/CreateDeck';
 import DeckScreen from './screens/Deck';
 import DecksScreen from './screens/Decks';
 import FriendsScreen from './screens/Friends';
@@ -18,7 +19,10 @@ const mainRoutes = [
   {
     name: 'Deck',
     component: DeckScreen,
-    // options: {({ route }) => ({ title: route.params.name })}
+  },
+  {
+    name: 'Create Deck',
+    component: CreateDeckScreen,
   },
   {
     name: 'Lobby',

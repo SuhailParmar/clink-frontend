@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     margin: 20,
     padding: 20,
     borderRadius: 3,
-    boxShadow: '0 4px 5px rgba(0, 0, 0, 0.2)'
+    // boxShadow: '0 4px 5px rgba(0, 0, 0, 0.2)'
   },
   header: {
     width: '100%',
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   profilePicture: {
-    justifySelf: 'flex-end',
+    // justifySelf: 'flex-end',
     height: 40,
     width: 40,
   },
@@ -52,12 +52,13 @@ const Profile = ({
         <View style={styles.profile}>
           <View style={styles.header}>
             <Text style={styles.name}>{user.name}</Text>
-            <Image source={require(`../../assets/${user.profilePicture}`)} style={styles.profilePicture} />
+            {/* todo fix image source android/web */}
+            <Image source={{ uri: 'asset:/app_icon.png' }} style={styles.profilePicture} />
           </View>
           <Text style={styles.field}>Email address: {user.email}</Text>
           <Text style={styles.field}>Games played: {user.gamesPlayed}</Text>
           <Text style={styles.field}>Games won: {user.gamesWon}</Text>
-          <Text style={styles.field}>Decks created: {user.decks.length}</Text>
+          <Text style={styles.field}>Decks created: {user.createdDeckIds.length}</Text>
           {isOwnProfile && <Button title='Update profile' styleButton={styles.updateProfileButton} />}
         </View>
         <Text style={styles.containerText}>{isOwnProfile ? 'Your' : 'Their'} Decks</Text>
@@ -70,7 +71,7 @@ const Profile = ({
                   id={deck.id}
                   key={deck.id}
                   logo={deck.logo}
-                  shortDesc={deck.shortDesc}
+                  shortDesc={deck.description}
                   onPress={() => navigation.push('Deck', deck)}
                   isOwnDeck={isOwnProfile}
                 />

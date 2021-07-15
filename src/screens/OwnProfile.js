@@ -11,15 +11,15 @@ const OwnProfileScreen = ({ navigation, route, setHomeOptions }) => {
   const currentUser = useContext(UserContext);
 
   useEffect(() => {
-    const getDecks_ = async (ids) => {
+    const getDecks_ = async (id) => {
       try {
-        const response = await getDecks(ids);
-        setDecks(response);
+        const { data } = await getDecks(id);
+        setDecks(data);
       } catch (e) {
         console.error(e);
       }
     }
-    getDecks_(currentUser.decks);
+    getDecks_(currentUser.id);
   }, [currentUser]);
 
   useFocusEffect(useCallback(() => {

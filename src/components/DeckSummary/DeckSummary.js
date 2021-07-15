@@ -18,7 +18,8 @@ const DeckSummary = ({ onPress, name, logo, shortDesc, author, isOwnDeck }) => {
       <View className="card" style={styles.deck}>
         <View style={styles.header}>
           <Text style={styles.title}>{name}</Text>
-          <Image source={require(`../../../assets/${logo}`)} style={styles.img} />
+          {/* todo fix image source android/web */}
+          <Image source={{ uri: 'asset:/app_icon.png' }} style={styles.img} />
         </View>
         {open && <View style={styles.body}>
           <Text style={styles.description}>{shortDesc}</Text>

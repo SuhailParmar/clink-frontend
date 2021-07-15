@@ -1,3 +1,11 @@
+// todo
+// import * as AuthSession from 'expo-auth-session'; // Refresh token
+// config = {
+//   refreshToken: refreshToken,
+//   clientId: ''
+// };
+// AuthSession.refreshAsync(config);
+
 const setupTokenRefresh = (res) => {
     // Timing to renew access token
     let refreshTiming = (res.tokenObj.expires_in || 3600 - 5 * 60) * 1000;

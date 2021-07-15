@@ -11,8 +11,8 @@ const ProfileScreen = ({ navigation, route: { params : { userId } }  }) => {
   useEffect(() => {
     const getUser_ = async () => {
       try {
-        const response = await getUser(userId);
-        setUser(response);
+        const { data } = await getUser(userId);
+        setUser(data);
       } catch (e) {
         console.error(e);
       }
@@ -23,22 +23,22 @@ const ProfileScreen = ({ navigation, route: { params : { userId } }  }) => {
 
   useEffect(() => {
     if(!user) return;
-    const getDecks_ = async (ids) => {
+    const getDecks_ = async (id) => {
       try {
-        const response = await getDecks(ids);
-        setDecks(response);
+        const { data } = await getDecks(id);
+        setDecks(data);
       } catch (e) {
         console.error(e);
       }
     }
-    getDecks_(user.decks);
+    getDecks_(user.id);
   }, [user]);
 
   useFocusEffect(useCallback(() => {
     // set screen title
     if(!user) return;
     navigation.setOptions({
-      title: `${user.name}'s Profile`
+      title: `${user.firstName}'s Profile`
     })
   }, [user]));
 

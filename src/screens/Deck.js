@@ -28,8 +28,8 @@ const DeckScreen = ({
     const getDeck_ = async () => {
       try {
         setLoading(true);
-        const response = await getDeck(id);
-        setDeck(response);
+        const { data } = await getDeck(id);
+        setDeck(data);
         setLoading(false);
       } catch(e) {
         console.error(e);
@@ -66,9 +66,10 @@ const DeckScreen = ({
         ? <View style={styles.loading}/>
         : deck && author && <View>
           <Text style={styles.title}>{deck.name}</Text>
-          <Image source={require(`../../assets/${deck.logo}`)} style={styles.img} />
-          <Text style={styles.description}>{deck.shortDesc}</Text>
-          <Text style={styles.description}>Author: {author.name}</Text>
+          {/* todo fix image source android/web */}
+          <Image source={{ uri: 'asset:/favicon.png' }} style={styles.img} />
+          <Text style={styles.description}>{deck.description}</Text>
+          <Text style={styles.description}>Author: {author.firstName}</Text>
           {/* 
             todo redirect to the Friends tab instead of profile
             todo redirect to Profile if author === self OR hide button (requires user context to be set up)
