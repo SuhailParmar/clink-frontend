@@ -30,9 +30,9 @@ const DecksScreen = (props) => {
   useEffect(() => {
     const getDecks_ = async () => {
       try {
-        const decks = await getDecks();
-        setCompleteDecklist(decks);
-        setDecklist(decks);
+        const { data } = await getDecks();
+        setCompleteDecklist(data);
+        setDecklist(data);
       } catch (e) {
         console.error(e);
       }

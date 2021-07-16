@@ -40,7 +40,7 @@ const getDecks = (userId) => {
     if(!ids) return mockDecks;
     return mockDecks.filter(deck => ids.includes(deck.id))
   }
-  return axios_instance.get(`${endpoint_decks}${userId && `/${userId}`}`);
+  return axios_instance.get(`${endpoint_decks}/${userId || ''}`);
 }
 const createDeck = (deck) => {
   if (mockBackend) {
@@ -83,7 +83,8 @@ const getUsers = (ids) => {
     if (ids) return mockUsers.filter(user => ids.includes(user.id));
     return mockUsers;
   }
-  return axios_instance.get(`${endpoint_users}${ids && `/ids?=${JSON.stringify(ids)}`}`);
+  return axios_instance.get(`${endpoint_users}${ids === undefined ? '' : `/ids?=${JSON.stringify(ids)}`}`);
+  // return axios_instance.get(`${endpoint_users}${ids && `/ids?=${JSON.stringify(ids)}`}`);
 }
 const createUser = (user) => {
   if (mockBackend) {
